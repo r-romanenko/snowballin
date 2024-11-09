@@ -6,6 +6,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_poukv"]
 rough = true
 bounce = 0.01
+absorbent = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0lqey"]
 radius = 1.0
@@ -30,6 +31,7 @@ mesh = ExtResource("2_smidh")
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 0.857167, 0.515038, 0, -0.515038, 0.857167, 0, 2.85, 3)
+visible = false
 current = true
 
 [node name="FloorCheck" type="RayCast3D" parent="."]
