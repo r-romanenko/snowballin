@@ -4,9 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://6kk2qxx4iibv" path="res://assets/models/pixar-ball.obj" id="2_smidh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_poukv"]
-friction = 4.0
 rough = true
-bounce = 0.1
+bounce = 0.01
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0lqey"]
 radius = 1.0
@@ -18,7 +17,7 @@ roughness = 0.4
 [node name="Ball" type="RigidBody3D"]
 mass = 1.068
 physics_material_override = SubResource("PhysicsMaterial_poukv")
-angular_damp = 0.99
+angular_damp = 1.702
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_0lqey")

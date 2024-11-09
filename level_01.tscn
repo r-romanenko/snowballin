@@ -60,15 +60,16 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Ball" parent="GridMap" instance=ExtResource("2_4w8h2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mass = 2.0
+mass = 2.501
 script = ExtResource("3_8ajf4")
 jump_impulse = 10
 
 [node name="Victory Zone" type="Area3D" parent="."]
 script = ExtResource("5_q6qtb")
+NEXT_LEVEL = "res://level_02.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Victory Zone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1.2, -44)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8, -1.50236, -44)
 shape = SubResource("BoxShape3D_din3b")
 
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
