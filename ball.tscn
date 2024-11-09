@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://clniwrvskmnd2"]
+
+[ext_resource type="Texture2D" uid="uid://cah4vaxsbqu4n" path="res://assets/textures/pixar-ball.png" id="1_8k1ra"]
+[ext_resource type="ArrayMesh" uid="uid://6kk2qxx4iibv" path="res://assets/models/pixar-ball.obj" id="2_smidh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_poukv"]
+friction = 4.0
+rough = true
+bounce = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0lqey"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88j1r"]
+albedo_texture = ExtResource("1_8k1ra")
+roughness = 0.4
+
+[node name="Ball" type="RigidBody3D"]
+mass = 1.068
+physics_material_override = SubResource("PhysicsMaterial_poukv")
+angular_damp = 0.99
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0lqey")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_88j1r")
+mesh = ExtResource("2_smidh")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.857167, 0.515038, 0, -0.515038, 0.857167, 0, 2.85, 3)
+current = true
+
+[node name="FloorCheck" type="RayCast3D" parent="."]
