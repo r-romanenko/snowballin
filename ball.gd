@@ -3,7 +3,7 @@ extends RigidBody3D
 @export var rolling_force = 40
 @export var jump_impulse = 30
 @export var growth_rate = 0.1  # How fast the ball grows per second
-@export var max_scale = 10.0   # Maximum size multiplier
+@export var max_scale = 2.0   # Maximum size multiplier
 
 @onready var collision_shape = $CollisionShape3D
 @onready var model = $Model
@@ -49,4 +49,4 @@ func _physics_process(delta: float) -> void:
 	var is_onfloor = $FloorCheck.is_colliding()
 	if Input.is_action_just_pressed("jump"): #and is_onfloor:
 		#scales the jump to jump a little higher when ball is bigger
-		apply_central_impulse(Vector3.UP * jump_impulse*current_scale*0.5)
+		apply_central_impulse(Vector3.UP * jump_impulse*current_scale*0.75)
