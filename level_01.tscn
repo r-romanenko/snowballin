@@ -19,7 +19,7 @@ sky_material = SubResource("ProceduralSkyMaterial_a06m0")
 
 [sub_resource type="Environment" id="Environment_x6txn"]
 background_mode = 1
-background_color = Color(0.243248, 0.46556, 1, 1)
+background_color = Color(0.517956, 0.674063, 1, 1)
 sky = SubResource("Sky_4x0yd")
 tonemap_mode = 3
 adjustment_enabled = true
@@ -83,9 +83,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 shape = SubResource("BoxShape3D_7yh47")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.091351, 0.451535, 0.887564, 0.861194, 0.483339, -0.157254, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 shadow_reverse_cull_face = true
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x6txn")
