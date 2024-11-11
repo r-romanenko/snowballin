@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cec4sh33fsv6t"]
+[gd_scene load_steps=8 format=3 uid="uid://cec4sh33fsv6t"]
 
 [ext_resource type="Script" path="res://pause_menu.gd" id="1_8xgju"]
 [ext_resource type="Shader" path="res://pause_menu.gdshader" id="2_30mcy"]
+[ext_resource type="PackedScene" uid="uid://bc7h2wqk7bskb" path="res://game_mechanics.tscn" id="3_befve"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jnbah"]
 shader = ExtResource("2_30mcy")
@@ -172,7 +173,7 @@ text = "Resume"
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Restart"
+text = "Game Mechanics"
 
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -183,6 +184,8 @@ text = "Quit"
 libraries = {
 "": SubResource("AnimationLibrary_ja1v3")
 }
+
+[node name="Mechanics" parent="." instance=ExtResource("3_befve")]
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

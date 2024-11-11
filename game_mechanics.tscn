@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc7h2wqk7bskb"]
+
+[ext_resource type="Texture2D" uid="uid://bnon4h0jvwc2h" path="res://Pause_Screen.png" id="1_ptago"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PauseScreen" type="Sprite2D" parent="."]
+scale = Vector2(0.600002, 0.600002)
+texture = ExtResource("1_ptago")
+centered = false
+
+[node name="Button" type="Button" parent="."]
+offset_left = 365.0
+offset_top = 563.0
+offset_right = 545.0
+offset_bottom = 594.0
+scale = Vector2(2.04, 1.93538)
+text = "PRESS G TO RETURN"
