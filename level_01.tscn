@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://co60ll2iitdm5"]
+[gd_scene load_steps=18 format=4 uid="uid://co60ll2iitdm5"]
 
 [ext_resource type="MeshLibrary" uid="uid://i2wxojilu4tw" path="res://blocks.meshlib" id="1_a5prr"]
 [ext_resource type="Script" path="res://death_zone.gd" id="1_cufvx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://ball.gd" id="3_8ajf4"]
 [ext_resource type="Script" path="res://victory_zone.gd" id="5_q6qtb"]
 [ext_resource type="PackedScene" uid="uid://cec4sh33fsv6t" path="res://pause_menu.tscn" id="6_dwi58"]
+[ext_resource type="Texture2D" uid="uid://cdax08y452836" path="res://Pause Screen.png" id="7_a2bkk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yh47"]
 size = Vector3(150, 1, 150)
@@ -28,7 +29,21 @@ adjustment_contrast = 1.5
 adjustment_saturation = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_din3b"]
-size = Vector3(2, 1, 2)
+size = Vector3(25.5405, 25.8353, 2)
+
+[sub_resource type="GDScript" id="GDScript_vfl6c"]
+script/source = "extends CSGBox3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yeguf"]
 resource_name = "Material.001"
@@ -110,8 +125,13 @@ script = ExtResource("5_q6qtb")
 NEXT_LEVEL = "res://level_02.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Victory Zone"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8, -1.50236, -44)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.449316, -19.1421, -66.6762)
 shape = SubResource("BoxShape3D_din3b")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Victory Zone/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.544158, -2.43799, -0.913631)
+size = Vector3(26.0099, 23.8506, 2.82727)
+script = SubResource("GDScript_vfl6c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -127,6 +147,12 @@ shape = SubResource("ConcavePolygonShape3D_a6g0w")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_dwi58")]
+
+[node name="PauseScreen" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(534, 370)
+scale = Vector2(0.551852, 0.551852)
+texture = ExtResource("7_a2bkk")
 
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
 [connection signal="body_entered" from="GridMap/Ball" to="DeathZone" method="_on_ball_body_entered"]
