@@ -31,7 +31,7 @@ mesh = ExtResource("2_smidh")
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 0.857167, 0.515038, 0, -0.515038, 0.857167, 0, 2.85, 3)
-visible = false
 current = true
 
 [node name="FloorCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.25, 0)
