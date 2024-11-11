@@ -2,8 +2,10 @@ extends RigidBody3D
 
 @export var rolling_force = 40
 @export var jump_impulse = 30
-@export var growth_rate = 0.1  # How fast the ball grows per second
-@export var max_scale = 2.0   # Maximum size multiplier
+
+@export var growth_rate = 0.3  # How fast the ball grows per second
+@export var max_scale = 10.0   # Maximum size multiplier
+
 
 @onready var collision_shape = $CollisionShape3D
 @onready var model = $Model

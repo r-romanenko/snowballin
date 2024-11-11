@@ -21,6 +21,7 @@ physics_material_override = SubResource("PhysicsMaterial_poukv")
 angular_damp = 1.702
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("SphereShape3D_0lqey")
 
 [node name="Model" type="MeshInstance3D" parent="."]
