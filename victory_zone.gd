@@ -21,5 +21,3 @@ func _change_scene() -> void:
 	
 func _reset_level() -> void:
 	get_tree().reload_current_scene()
-
-
