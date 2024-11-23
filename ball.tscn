@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://clniwrvskmnd2"]
+[gd_scene load_steps=7 format=3 uid="uid://clniwrvskmnd2"]
 
 [ext_resource type="Texture2D" uid="uid://cah4vaxsbqu4n" path="res://assets/textures/pixar-ball.png" id="1_8k1ra"]
 [ext_resource type="ArrayMesh" uid="uid://6kk2qxx4iibv" path="res://assets/models/pixar-ball.obj" id="2_smidh"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="3_wdwwl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_poukv"]
 rough = true
@@ -33,6 +34,9 @@ mesh = ExtResource("2_smidh")
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
 transform = Transform3D(1, 0, 0, 0, 0.857167, 0.515038, 0, -0.515038, 0.857167, 0, 2.85, 3)
 current = true
+far = 906.93
+script = ExtResource("3_wdwwl")
+ball_path = NodePath("../..")
 
 [node name="FloorCheck" type="RayCast3D" parent="."]
 target_position = Vector3(0, -1.25, 0)
