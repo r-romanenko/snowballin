@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://clniwrvskmnd2"]
+[gd_scene load_steps=8 format=3 uid="uid://clniwrvskmnd2"]
 
 [ext_resource type="Texture2D" uid="uid://cah4vaxsbqu4n" path="res://assets/textures/pixar-ball.png" id="1_8k1ra"]
 [ext_resource type="ArrayMesh" uid="uid://6kk2qxx4iibv" path="res://assets/models/pixar-ball.obj" id="2_smidh"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_wdwwl"]
+[ext_resource type="Script" path="res://floor_check.gd" id="4_x48tf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_poukv"]
 rough = true
@@ -40,3 +41,5 @@ ball_path = NodePath("../..")
 
 [node name="FloorCheck" type="RayCast3D" parent="."]
 target_position = Vector3(0, -1.25, 0)
+script = ExtResource("4_x48tf")
+ball_path = NodePath("..")

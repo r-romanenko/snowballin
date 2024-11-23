@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		# Adjust floor check position based on ball size
 		floor_check.position.y = -current_scale
 		
-		print("Current scale: ", new_scale)  # Debug print
+		#print("Current scale: ", new_scale)  # Debug print
 
 	var old_camera_pos = $Marker3D.global_transform.origin
 	var ball_pos = global_transform.origin

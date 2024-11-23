@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://co60ll2iitdm5"]
+[gd_scene load_steps=20 format=4 uid="uid://co60ll2iitdm5"]
 
 [ext_resource type="MeshLibrary" uid="uid://i2wxojilu4tw" path="res://blocks.meshlib" id="1_a5prr"]
 [ext_resource type="Script" path="res://death_zone.gd" id="1_cufvx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cec4sh33fsv6t" path="res://pause_menu.tscn" id="6_dwi58"]
 [ext_resource type="Texture2D" uid="uid://cdax08y452836" path="res://Pause Screen.png" id="7_a2bkk"]
 [ext_resource type="AudioStream" uid="uid://ddrxbb8nt3p06" path="res://assets/sounds/Icy crunch loop.wav" id="8_b2ej5"]
+[ext_resource type="AudioStream" uid="uid://cyudocd8hfkxq" path="res://assets/sounds/Snow Slope Run.mp3" id="9_2njx7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yh47"]
 size = Vector3(150, 1, 150)
@@ -158,6 +159,11 @@ visible = false
 position = Vector2(534, 370)
 scale = Vector2(0.551852, 0.551852)
 texture = ExtResource("7_a2bkk")
+
+[node name="Background music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_2njx7")
+volume_db = -27.322
+autoplay = true
 
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
 [connection signal="body_entered" from="GridMap/Ball" to="DeathZone" method="_on_ball_body_entered"]
