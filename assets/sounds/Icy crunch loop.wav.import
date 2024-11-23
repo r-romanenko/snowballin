@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ddrxbb8nt3p06"
+path="res://.godot/imported/Icy crunch loop.wav-ad3a6bdc9b3de9feb3b4de54cbedde71.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Icy crunch loop.wav"
+dest_files=["res://.godot/imported/Icy crunch loop.wav-ad3a6bdc9b3de9feb3b4de54cbedde71.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
