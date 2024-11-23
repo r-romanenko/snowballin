@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("right"):
 		angular_velocity.z -= rolling_force * delta
 		
-	var is_onfloor = $FloorCheck.is_colliding()
-	if Input.is_action_just_pressed("jump"): #and is_onfloor:
+	# var is_onfloor = $FloorCheck.is_colliding()
+	if Input.is_action_just_pressed("jump") and $FloorCheck.is_colliding(): #and is_onfloor:
 		#scales the jump to jump a little higher when ball is bigger
-		apply_central_impulse(Vector3.UP * jump_impulse*current_scale*0.75)
+		apply_central_impulse(Vector3.UP * jump_impulse*current_scale*1)
