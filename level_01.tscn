@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://co60ll2iitdm5"]
+[gd_scene load_steps=19 format=4 uid="uid://co60ll2iitdm5"]
 
 [ext_resource type="MeshLibrary" uid="uid://i2wxojilu4tw" path="res://blocks.meshlib" id="1_a5prr"]
 [ext_resource type="Script" path="res://death_zone.gd" id="1_cufvx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://victory_zone.gd" id="5_q6qtb"]
 [ext_resource type="PackedScene" uid="uid://cec4sh33fsv6t" path="res://pause_menu.tscn" id="6_dwi58"]
 [ext_resource type="Texture2D" uid="uid://cdax08y452836" path="res://Pause Screen.png" id="7_a2bkk"]
+[ext_resource type="AudioStream" uid="uid://ddrxbb8nt3p06" path="res://assets/sounds/Icy crunch loop.wav" id="8_b2ej5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yh47"]
 size = Vector3(150, 1, 150)
@@ -119,6 +120,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.27814, 0)
 mass = 2.501
 script = ExtResource("3_8ajf4")
 jump_impulse = 10
+
+[node name="Rolling" type="AudioStreamPlayer" parent="GridMap/Ball"]
+stream = ExtResource("8_b2ej5")
+volume_db = -29.085
 
 [node name="Victory Zone" type="Area3D" parent="."]
 script = ExtResource("5_q6qtb")
