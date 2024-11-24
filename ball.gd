@@ -6,7 +6,7 @@ extends RigidBody3D
 @export var growth_rate = 0.1  # How fast the ball grows per second
 @export var max_scale = 10.0   # Maximum size multiplier
 
-
+	
 @onready var collision_shape = $CollisionShape3D
 @onready var model = $Model
 @onready var floor_check = $FloorCheck

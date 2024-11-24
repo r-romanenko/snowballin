@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://clniwrvskmnd2"]
+[gd_scene load_steps=13 format=3 uid="uid://clniwrvskmnd2"]
 
-[ext_resource type="Texture2D" uid="uid://cah4vaxsbqu4n" path="res://assets/textures/pixar-ball.png" id="1_8k1ra"]
+[ext_resource type="Texture2D" uid="uid://cwryxhf1wme67" path="res://assets/textures/image(2).png" id="1_vbm1p"]
 [ext_resource type="ArrayMesh" uid="uid://6kk2qxx4iibv" path="res://assets/models/pixar-ball.obj" id="2_smidh"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_wdwwl"]
+[ext_resource type="Script" path="res://gpu_particles_3d.gd" id="4_no40b"]
 [ext_resource type="Script" path="res://floor_check.gd" id="4_x48tf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_poukv"]
@@ -13,9 +14,31 @@ absorbent = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_0lqey"]
 radius = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88j1r"]
-albedo_texture = ExtResource("1_8k1ra")
-roughness = 0.4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fk5uy"]
+albedo_texture = ExtResource("1_vbm1p")
+
+[sub_resource type="Curve" id="Curve_s5t0q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_r4www"]
+curve = SubResource("Curve_s5t0q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sloyt"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 0, 5)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -1, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_r4www")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_5fte2"]
 
 [node name="Ball" type="RigidBody3D"]
 mass = 1.068
@@ -27,7 +50,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("SphereShape3D_0lqey")
 
 [node name="Model" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_88j1r")
+material_override = SubResource("StandardMaterial3D_fk5uy")
 mesh = ExtResource("2_smidh")
 
 [node name="Marker3D" type="Marker3D" parent="."]
@@ -37,6 +60,17 @@ transform = Transform3D(1, 0, 0, 0, 0.857167, 0.515038, 0, -0.515038, 0.857167, 
 current = true
 far = 906.93
 script = ExtResource("3_wdwwl")
+ball_path = NodePath("../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0394058, 7.4023, 0.794663)
+cast_shadow = 0
+amount = 500
+lifetime = 5.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_sloyt")
+draw_pass_1 = SubResource("SphereMesh_5fte2")
+script = ExtResource("4_no40b")
 ball_path = NodePath("../..")
 
 [node name="FloorCheck" type="RayCast3D" parent="."]

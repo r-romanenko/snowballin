@@ -150,6 +150,8 @@ skeleton = NodePath("")
 transform = Transform3D(13.5429, 0, 0, 0, 14.6802, 0, 0, 0, 34.3025, 0, -16.9392, -31.5864)
 shape = SubResource("ConcavePolygonShape3D_a6g0w")
 
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="StaticBody3D/CollisionShape3D"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_dwi58")]

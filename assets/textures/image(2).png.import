@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtrpoq1ofmdsv"
-path.s3tc="res://.godot/imported/lowpoly-texture.png-6aeb87b4e43d3d58f0e1bbc19bd0ecac.s3tc.ctex"
+uid="uid://cwryxhf1wme67"
+path.s3tc="res://.godot/imported/image(2).png-1aff197120efb96dbb67123e81aa2206.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/lowpoly-texture.png"
-dest_files=["res://.godot/imported/lowpoly-texture.png-6aeb87b4e43d3d58f0e1bbc19bd0ecac.s3tc.ctex"]
+source_file="res://assets/textures/image(2).png"
+dest_files=["res://.godot/imported/image(2).png-1aff197120efb96dbb67123e81aa2206.s3tc.ctex"]
 
 [params]
 
