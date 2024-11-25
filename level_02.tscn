@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq4fbhx643e74"]
+[gd_scene load_steps=3 format=3 uid="uid://dq4fbhx643e74"]
 
 [ext_resource type="PackedScene" uid="uid://co60ll2iitdm5" path="res://level_01.tscn" id="1_dnr6v"]
+[ext_resource type="AudioStream" uid="uid://r17jd1qsoo" path="res://assets/sounds/Super Mario 64 - Cool Cool Mountain Music.mp3" id="2_j2vlx"]
 
 [node name="level02" instance=ExtResource("1_dnr6v")]
 
@@ -8,3 +9,6 @@
 data = {
 "cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 0, 65534, 0, 65535, 65534, 0, 65535, 65533, 0, 65535, 65532, 0, 65535, 65531, 0, 65535, 65530, 0, 65535, 65529, 0, 65534, 65529, 0, 65534, 65528, 0, 65534, 65525, 5, 65533, 65529, 4, 65535, 65527, 4, 65535, 65528, 4, 2, 65534, 2, 2, 65535, 1, 2, 0, 1, 1, 65535, 1)
 }
+
+[node name="Background music" parent="." index="7"]
+stream = ExtResource("2_j2vlx")
