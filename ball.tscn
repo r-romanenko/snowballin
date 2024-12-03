@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://clniwrvskmnd2"]
+[gd_scene load_steps=14 format=3 uid="uid://clniwrvskmnd2"]
 
 [ext_resource type="Texture2D" uid="uid://cwryxhf1wme67" path="res://assets/textures/image(2).png" id="1_vbm1p"]
 [ext_resource type="ArrayMesh" uid="uid://6kk2qxx4iibv" path="res://assets/models/pixar-ball.obj" id="2_smidh"]
@@ -40,6 +40,9 @@ collision_bounce = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_5fte2"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aipjg"]
+albedo_texture = ExtResource("1_vbm1p")
+
 [node name="Ball" type="RigidBody3D"]
 mass = 1.068
 physics_material_override = SubResource("PhysicsMaterial_poukv")
@@ -50,6 +53,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("SphereShape3D_0lqey")
 
 [node name="Model" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_fk5uy")
 mesh = ExtResource("2_smidh")
 
@@ -62,8 +66,8 @@ far = 906.93
 script = ExtResource("3_wdwwl")
 ball_path = NodePath("../..")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Marker3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0394058, 7.4023, 0.794663)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Marker3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.857167, -0.515038, 0, 0.515038, 0.857167, -0.0394058, 5.03792, 0.454266)
 cast_shadow = 0
 amount = 500
 lifetime = 5.0
@@ -71,9 +75,16 @@ randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_sloyt")
 draw_pass_1 = SubResource("SphereMesh_5fte2")
 script = ExtResource("4_no40b")
-ball_path = NodePath("../..")
+ball_path = NodePath("../../..")
 
 [node name="FloorCheck" type="RayCast3D" parent="."]
 target_position = Vector3(0, -1.25, 0)
 script = ExtResource("4_x48tf")
 ball_path = NodePath("..")
+
+[node name="snowball_model" type="CSGSphere3D" parent="."]
+material_override = SubResource("StandardMaterial3D_aipjg")
+snap = 1e-06
+radius = 1.0
+radial_segments = 20
+rings = 15
