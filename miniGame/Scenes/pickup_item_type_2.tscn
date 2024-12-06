@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://wvxt37pj21h5"]
+
+[ext_resource type="Script" path="res://Scripts/PickupItem.gd" id="1_eh78j"]
+[ext_resource type="Material" uid="uid://b17fsaue1tc62" path="res://Materials/PurpleMaterial.tres" id="2_gsxa2"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_j7uby"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s37qk"]
+points = PackedVector3Array(0, 0.25, 0.25, 0.25, -0.25, 0.25, 0, 0.25, -0.25, -0.25, -0.25, 0.25, 0.25, -0.25, -0.25, -0.25, -0.25, -0.25)
+
+[node name="PickupItemType2" type="RigidBody3D"]
+script = ExtResource("1_eh78j")
+increase_size = 0.01
+metadata/is_pickup_item = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_gsxa2")
+mesh = SubResource("PrismMesh_j7uby")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_s37qk")

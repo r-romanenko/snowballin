@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw4p6bc15gkbx"]
+
+[ext_resource type="Script" path="res://Scripts/PickupItem.gd" id="1_6v8w3"]
+[ext_resource type="Material" uid="uid://bodvf0twuq7gq" path="res://Materials/GreenMaterial.tres" id="1_ig8dx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4oovx"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8vr35"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="PickupItemType0" type="RigidBody3D"]
+script = ExtResource("1_6v8w3")
+increase_size = 0.002
+metadata/is_pickup_item = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_ig8dx")
+mesh = SubResource("BoxMesh_4oovx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8vr35")

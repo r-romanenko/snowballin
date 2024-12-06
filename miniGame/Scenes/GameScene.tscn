@@ -1,0 +1,241 @@
+[gd_scene load_steps=19 format=3 uid="uid://bmbgmx6hbddg3"]
+
+[ext_resource type="Material" uid="uid://ck16v7kivvfq6" path="res://Materials/GrayGridMaterial.tres" id="1_k2f2a"]
+[ext_resource type="Material" uid="uid://pyue2l6n7crf" path="res://Materials/OrangeMaterial.tres" id="2_d1jr8"]
+[ext_resource type="Script" path="res://Scripts/CameraController.gd" id="2_fkkta"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="2_i461g"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="5_dpj8g"]
+[ext_resource type="PackedScene" uid="uid://cw4p6bc15gkbx" path="res://Scenes/pickup_item_type_0.tscn" id="5_l3k1m"]
+[ext_resource type="PackedScene" uid="uid://bgrvqcbv08e5a" path="res://Scenes/pickup_item_type_1.tscn" id="6_e6fc3"]
+[ext_resource type="PackedScene" uid="uid://wvxt37pj21h5" path="res://Scenes/pickup_item_type_2.tscn" id="7_yucsb"]
+[ext_resource type="Script" path="res://Scripts/ItemSpawner.gd" id="8_bgew3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sriop"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_37r2e"]
+points = PackedVector3Array(-50, -0.5, -50, -50, 0.5, -50, 50, -0.5, -50, -50, -0.5, 50, -50, 0.5, 50, 50, 0.5, -50, 50, -0.5, 50, 50, 0.5, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6owly"]
+size = Vector3(100, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8emen"]
+points = PackedVector3Array(50, 5, 0.5, 50, 5, -0.5, -50, 5, 0.5, 50, -5, 0.5, 50, -5, -0.5, -50, 5, -0.5, -50, -5, 0.5, -50, -5, -0.5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6kb5g"]
+
+[sub_resource type="Sky" id="Sky_15oek"]
+sky_material = SubResource("ProceduralSkyMaterial_6kb5g")
+
+[sub_resource type="Environment" id="Environment_aqqi7"]
+background_mode = 2
+sky = SubResource("Sky_15oek")
+
+[sub_resource type="SphereMesh" id="SphereMesh_reiq4"]
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s8exs"]
+
+[node name="GameScene" type="Node"]
+
+[node name="ItemSpawner" type="Node" parent="." node_paths=PackedStringArray("item_parent")]
+script = ExtResource("8_bgew3")
+item_parent = NodePath("../Items")
+item_templates = Array[PackedScene]([ExtResource("5_l3k1m"), ExtResource("6_e6fc3"), ExtResource("7_yucsb")])
+
+[node name="ItemSpawnTimer" type="Timer" parent="ItemSpawner"]
+autostart = true
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("5_dpj8g")
+player = NodePath("../Player")
+
+[node name="GameplayTimer" type="Timer" parent="GameManager"]
+autostart = true
+
+[node name="Environments" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Environments"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Environments/Ground"]
+material_override = ExtResource("1_k2f2a")
+mesh = SubResource("BoxMesh_sriop")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Ground"]
+shape = SubResource("ConvexPolygonShape3D_37r2e")
+
+[node name="Wall" type="StaticBody3D" parent="Environments"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -50)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall"]
+material_override = ExtResource("1_k2f2a")
+mesh = SubResource("BoxMesh_6owly")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall"]
+shape = SubResource("ConvexPolygonShape3D_8emen")
+
+[node name="Wall2" type="StaticBody3D" parent="Environments"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 50)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall2"]
+material_override = ExtResource("1_k2f2a")
+mesh = SubResource("BoxMesh_6owly")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall2"]
+shape = SubResource("ConvexPolygonShape3D_8emen")
+
+[node name="Wall3" type="StaticBody3D" parent="Environments"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 5, 0)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall3"]
+material_override = ExtResource("1_k2f2a")
+mesh = SubResource("BoxMesh_6owly")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall3"]
+shape = SubResource("ConvexPolygonShape3D_8emen")
+
+[node name="Wall4" type="StaticBody3D" parent="Environments"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 5, 0)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall4"]
+material_override = ExtResource("1_k2f2a")
+mesh = SubResource("BoxMesh_6owly")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall4"]
+shape = SubResource("ConvexPolygonShape3D_8emen")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environments"]
+environment = SubResource("Environment_aqqi7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environments"]
+transform = Transform3D(0.610175, -0.518708, 0.598857, 0, 0.755877, 0.654713, -0.792267, -0.399489, 0.461217, 3.55975, 6.85944, 2.33715)
+shadow_enabled = true
+
+[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("camera_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_i461g")
+camera_node = NodePath("../CameraPivot/Camera3D")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
+material_override = ExtResource("2_d1jr8")
+mesh = SubResource("SphereMesh_reiq4")
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="Player"]
+shape = SubResource("SphereShape3D_s8exs")
+
+[node name="Attachments" type="Node3D" parent="Player"]
+
+[node name="CameraPivot" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera_node")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+script = ExtResource("2_fkkta")
+player = NodePath("../Player")
+camera_node = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="PickupItemType0" parent="Items" instance=ExtResource("5_l3k1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.637825, 1.5, -3.54902)
+
+[node name="PickupItemType1" parent="Items" instance=ExtResource("5_l3k1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -4)
+
+[node name="PickupItemType2" parent="Items" instance=ExtResource("6_e6fc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60324, 1.88757, -4.43168)
+
+[node name="PickupItemType3" parent="Items" instance=ExtResource("6_e6fc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36224, 1.81503, -6.80579)
+
+[node name="PickupItemType4" parent="Items" instance=ExtResource("7_yucsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7805, 1.89144, -4.65721)
+
+[node name="PickupItemType5" parent="Items" instance=ExtResource("7_yucsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6646, 1.73708, -7.29201)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelGameplayTimer" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.5
+offset_right = 20.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+
+[node name="LabelGameOver" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnRestart" type="Button" parent="UI/LabelGameOver"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.5
+offset_top = 0.960007
+offset_right = 56.5
+offset_bottom = 50.96
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+
+[node name="Information" type="VSplitContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -149.5
+offset_top = 65.66
+offset_right = 149.5
+offset_bottom = 161.66
+grow_horizontal = 2
+
+[node name="LabelItemCount" type="Label" parent="UI/Information"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Pickup Item Count: 0"
+horizontal_alignment = 1
+
+[node name="LabelSize" type="Label" parent="UI/Information"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Size: 0.5m"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="ItemSpawner/ItemSpawnTimer" to="ItemSpawner" method="_spawn_pickup_item"]
+[connection signal="timeout" from="GameManager/GameplayTimer" to="GameManager" method="on_gameplay_timer_timeout"]
+[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
+[connection signal="pressed" from="UI/LabelGameOver/BtnRestart" to="GameManager" method="restart_game"]

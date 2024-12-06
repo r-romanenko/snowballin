@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgrvqcbv08e5a"]
+
+[ext_resource type="Script" path="res://Scripts/PickupItem.gd" id="1_hutan"]
+[ext_resource type="Material" uid="uid://c0v8hu7b6rvfm" path="res://Materials/LightMaterial.tres" id="2_r1d7s"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ufkwe"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdb2b"]
+radius = 0.25
+height = 1.0
+
+[node name="PickupItemType1" type="RigidBody3D"]
+script = ExtResource("1_hutan")
+increase_size = 0.005
+metadata/is_pickup_item = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_r1d7s")
+mesh = SubResource("CapsuleMesh_ufkwe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rdb2b")
