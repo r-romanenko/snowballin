@@ -137,6 +137,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Ball" parent="GridMap" instance=ExtResource("2_4w8h2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.27814, 0)
+visible = false
 mass = 2.501
 script = ExtResource("3_8ajf4")
 jump_impulse = 10
