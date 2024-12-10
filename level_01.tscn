@@ -1,9 +1,7 @@
-[gd_scene load_steps=22 format=4 uid="uid://co60ll2iitdm5"]
+[gd_scene load_steps=20 format=4 uid="uid://co60ll2iitdm5"]
 
 [ext_resource type="MeshLibrary" uid="uid://i2wxojilu4tw" path="res://blocks.meshlib" id="1_a5prr"]
 [ext_resource type="Script" path="res://death_zone.gd" id="1_cufvx"]
-[ext_resource type="PackedScene" uid="uid://clniwrvskmnd2" path="res://ball.tscn" id="2_4w8h2"]
-[ext_resource type="Script" path="res://ball.gd" id="3_8ajf4"]
 [ext_resource type="Script" path="res://victory_zone.gd" id="5_q6qtb"]
 [ext_resource type="PackedScene" uid="uid://cec4sh33fsv6t" path="res://pause_menu.tscn" id="6_dwi58"]
 [ext_resource type="Texture2D" uid="uid://cdax08y452836" path="res://Pause Screen.png" id="7_a2bkk"]
@@ -135,13 +133,6 @@ cell_center_y = false
 cell_center_z = false
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Ball" parent="GridMap" instance=ExtResource("2_4w8h2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.27814, 0)
-visible = false
-mass = 2.501
-script = ExtResource("3_8ajf4")
-jump_impulse = 10
-
 [node name="Victory Zone" type="Area3D" parent="."]
 script = ExtResource("5_q6qtb")
 NEXT_LEVEL = "res://level_02.tscn"
@@ -190,5 +181,4 @@ transform = Transform3D(1, 0, 0, 0, 0.893442, 0.449179, 0, -0.449179, 0.893442, 
 [node name="GameScene" parent="." instance=ExtResource("11_ulx03")]
 
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
-[connection signal="body_entered" from="GridMap/Ball" to="DeathZone" method="_on_ball_body_entered"]
 [connection signal="body_entered" from="Victory Zone" to="Victory Zone" method="_on_body_entered"]

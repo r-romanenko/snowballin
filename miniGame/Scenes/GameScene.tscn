@@ -1,14 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmbgmx6hbddg3"]
+[gd_scene load_steps=23 format=3 uid="uid://bmbgmx6hbddg3"]
 
 [ext_resource type="Material" uid="uid://ck16v7kivvfq6" path="res://miniGame/Materials/GrayGridMaterial.tres" id="1_k2f2a"]
 [ext_resource type="Material" uid="uid://pyue2l6n7crf" path="res://miniGame/Materials/OrangeMaterial.tres" id="2_d1jr8"]
 [ext_resource type="Script" path="res://Scripts/CameraController.gd" id="2_fkkta"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_i461g"]
-[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="5_dpj8g"]
 [ext_resource type="PackedScene" uid="uid://cw4p6bc15gkbx" path="res://miniGame/Scenes/pickup_item_type_0.tscn" id="5_l3k1m"]
 [ext_resource type="PackedScene" uid="uid://bgrvqcbv08e5a" path="res://miniGame/Scenes/pickup_item_type_1.tscn" id="6_e6fc3"]
 [ext_resource type="PackedScene" uid="uid://wvxt37pj21h5" path="res://miniGame/Scenes/pickup_item_type_2.tscn" id="7_yucsb"]
 [ext_resource type="Script" path="res://Scripts/ItemSpawner.gd" id="8_bgew3"]
+[ext_resource type="Texture2D" uid="uid://cwryxhf1wme67" path="res://assets/textures/image(2).png" id="9_mymv5"]
+[ext_resource type="Script" path="res://floor_check.gd" id="13_j6qaq"]
+[ext_resource type="AudioStream" uid="uid://ddrxbb8nt3p06" path="res://assets/sounds/Icy crunch loop.wav" id="14_5r2ny"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sriop"]
 size = Vector3(100, 1, 100)
@@ -37,6 +39,12 @@ rings = 8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s8exs"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_8802e"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46wq2"]
+albedo_texture = ExtResource("9_mymv5")
+
 [node name="GameScene" type="Node"]
 
 [node name="ItemSpawner" type="Node" parent="." node_paths=PackedStringArray("item_parent")]
@@ -45,13 +53,6 @@ item_parent = NodePath("../Items")
 item_templates = Array[PackedScene]([ExtResource("5_l3k1m"), ExtResource("6_e6fc3"), ExtResource("7_yucsb")])
 
 [node name="ItemSpawnTimer" type="Timer" parent="ItemSpawner"]
-autostart = true
-
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("5_dpj8g")
-player = NodePath("../Player")
-
-[node name="GameplayTimer" type="Timer" parent="GameManager"]
 autostart = true
 
 [node name="invisible boundary" type="Node3D" parent="."]
@@ -113,18 +114,14 @@ shape = SubResource("ConvexPolygonShape3D_8emen")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="invisible boundary"]
 environment = SubResource("Environment_aqqi7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="invisible boundary"]
-transform = Transform3D(0.610175, -0.518708, 0.598857, 0, 0.755877, 0.654713, -0.792267, -0.399489, 0.461217, 3.55975, 6.85944, 2.33715)
-shadow_enabled = true
-
 [node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("camera_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("2_i461g")
 camera_node = NodePath("../CameraPivot/Camera3D")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
+visible = false
 material_override = ExtResource("2_d1jr8")
 mesh = SubResource("SphereMesh_reiq4")
 
@@ -132,6 +129,27 @@ mesh = SubResource("SphereMesh_reiq4")
 shape = SubResource("SphereShape3D_s8exs")
 
 [node name="Attachments" type="Node3D" parent="Player"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("SphereShape3D_8802e")
+
+[node name="FloorCheck" type="RayCast3D" parent="Player"]
+target_position = Vector3(0, -1.25, 0)
+script = ExtResource("13_j6qaq")
+ball_path = NodePath("..")
+
+[node name="snowball_model" type="CSGSphere3D" parent="Player"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_46wq2")
+snap = 1e-06
+radius = 1.0
+radial_segments = 20
+rings = 15
+
+[node name="Rolling" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("14_5r2ny")
+volume_db = -29.085
 
 [node name="CameraPivot" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera_node")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
@@ -162,85 +180,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7805, 1.89144, -4.65721)
 [node name="PickupItemType5" parent="Items" instance=ExtResource("7_yucsb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6646, 1.73708, -7.29201)
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LabelGameplayTimer" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.5
-offset_right = 20.5
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
-text = "00:00"
-
-[node name="LabelGameOver" type="Label" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "Game Over"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BtnRestart" type="Button" parent="UI/LabelGameOver"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -56.5
-offset_top = 0.960007
-offset_right = 56.5
-offset_bottom = 50.96
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 30
-text = "Restart"
-
-[node name="Information" type="VSplitContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -149.5
-offset_top = 65.66
-offset_right = 149.5
-offset_bottom = 161.66
-grow_horizontal = 2
-
-[node name="LabelItemCount" type="Label" parent="UI/Information"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Pickup Item Count: 0"
-horizontal_alignment = 1
-
-[node name="LabelSize" type="Label" parent="UI/Information"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Size: 0.5m"
-horizontal_alignment = 1
-
 [connection signal="timeout" from="ItemSpawner/ItemSpawnTimer" to="ItemSpawner" method="_spawn_pickup_item"]
-[connection signal="timeout" from="GameManager/GameplayTimer" to="GameManager" method="on_gameplay_timer_timeout"]
 [connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
-[connection signal="pressed" from="UI/LabelGameOver/BtnRestart" to="GameManager" method="restart_game"]
