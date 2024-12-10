@@ -28,13 +28,8 @@ func _ready() -> void:
 @export var growth_rate = 0.1  # How fast the ball grows per second
 @export var max_scale = 10.0   # Maximum size multiplier
 
-	
-#@onready var collision_shape = $CollisionShape3D
-#@onready var model = $Model
-#@onready var floor_check = $FloorCheck
-
-
 func _physics_process(delta: float) -> void:
+	var current_scale = collision_shape.scale.x
 
 	#var old_camera_pos = $Marker3D.global_transform.origin
 	#var ball_pos = global_transform.origin
@@ -49,19 +44,19 @@ func _physics_process(delta: float) -> void:
 		angular_velocity.z += rolling_force * delta
 	elif Input.is_action_pressed("right"):
 		angular_velocity.z -= rolling_force * delta
-		#
-	## var is_onfloor = $FloorCheck.is_colliding()
-	#if !$FloorCheck.is_colliding():
-		#$Rolling.stop()
-	#
-	#if $FloorCheck.is_colliding(): #and is_onfloor:
-		## make sound effect
-		#if !$Rolling.playing:
-			#$Rolling.play()
-		#
-		#if Input.is_action_just_pressed("jump"):
-			##scales the jump to jump a little higher when ball is bigger
-			#apply_central_impulse(Vector3.UP * jump_impulse*current_scale*1)
+		
+	# var is_onfloor = $FloorCheck.is_colliding()
+	if !$FloorCheck.is_colliding():
+		$Rolling.stop()
+	
+	if $FloorCheck.is_colliding(): #and is_onfloor:
+		# make sound effect
+		if !$Rolling.playing:
+			$Rolling.play()
+		
+		if Input.is_action_just_pressed("jump"):
+			#scales the jump to jump a little higher when ball is bigger
+			apply_central_impulse(Vector3.UP * jump_impulse*current_scale*1)
 
 ## get the forward vector of the camera projected onto a plane facing upward.
 func _get_projected_camera_forward() -> Vector3:

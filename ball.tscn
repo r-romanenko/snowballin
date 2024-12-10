@@ -21,7 +21,7 @@ albedo_texture = ExtResource("1_vbm1p")
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_sgs1b"]
+[sub_resource type="CurveTexture" id="CurveTexture_au7jt"]
 curve = SubResource("Curve_s5t0q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sloyt"]
@@ -33,7 +33,7 @@ initial_velocity_max = 2.0
 gravity = Vector3(0, -1, 0)
 scale_min = 0.1
 scale_max = 0.1
-scale_curve = SubResource("CurveTexture_sgs1b")
+scale_curve = SubResource("CurveTexture_au7jt")
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bmbgmx6hbddg3"]
+[gd_scene load_steps=27 format=3 uid="uid://bmbgmx6hbddg3"]
 
 [ext_resource type="Material" uid="uid://ck16v7kivvfq6" path="res://miniGame/Materials/GrayGridMaterial.tres" id="1_k2f2a"]
 [ext_resource type="Material" uid="uid://pyue2l6n7crf" path="res://miniGame/Materials/OrangeMaterial.tres" id="2_d1jr8"]
@@ -44,6 +44,29 @@ radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46wq2"]
 albedo_texture = ExtResource("9_mymv5")
+
+[sub_resource type="Curve" id="Curve_bnymn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sgs1b"]
+curve = SubResource("Curve_bnymn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xheci"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 0, 5)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -1, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_sgs1b")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_my2gu"]
 
 [node name="GameScene" type="Node"]
 
@@ -150,6 +173,15 @@ rings = 15
 [node name="Rolling" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("14_5r2ny")
 volume_db = -29.085
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.857167, -0.515038, 0, 0.515038, 0.857167, -0.0394058, 5.03792, 0.454266)
+cast_shadow = 0
+amount = 500
+lifetime = 5.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_xheci")
+draw_pass_1 = SubResource("SphereMesh_my2gu")
 
 [node name="CameraPivot" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera_node")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
