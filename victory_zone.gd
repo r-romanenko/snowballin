@@ -5,8 +5,8 @@ extends Area3D
 @export var required_energy = 30
 
 
-func _on_body_entered(body: Node3D) -> void:
-	if body.name == "Ball":
+func _on_body_entered(body: RigidBody3D) -> void:
+	if body.name == "Player":
 		var ball_scale = body.scale.length() # size based on scale
 		var ball_speed = body.linear_velocity.length()
 		
