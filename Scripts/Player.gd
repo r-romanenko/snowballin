@@ -20,8 +20,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# To handle physical movement, store player input values in _process,
 	# and perform the actual processing in _physics_process.
-	player_input.x = Input.get_axis("Left", "Right")
-	player_input.y = Input.get_axis("Backward", "Forward")	
+	player_input.x = Input.get_axis("left", "right")
+	player_input.y = Input.get_axis("back", "forward")	
 
 ## physics process
 func _physics_process(delta: float) -> void:

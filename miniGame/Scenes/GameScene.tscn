@@ -1,13 +1,13 @@
 [gd_scene load_steps=19 format=3 uid="uid://bmbgmx6hbddg3"]
 
-[ext_resource type="Material" uid="uid://ck16v7kivvfq6" path="res://Materials/GrayGridMaterial.tres" id="1_k2f2a"]
-[ext_resource type="Material" uid="uid://pyue2l6n7crf" path="res://Materials/OrangeMaterial.tres" id="2_d1jr8"]
+[ext_resource type="Material" uid="uid://ck16v7kivvfq6" path="res://miniGame/Materials/GrayGridMaterial.tres" id="1_k2f2a"]
+[ext_resource type="Material" uid="uid://pyue2l6n7crf" path="res://miniGame/Materials/OrangeMaterial.tres" id="2_d1jr8"]
 [ext_resource type="Script" path="res://Scripts/CameraController.gd" id="2_fkkta"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_i461g"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="5_dpj8g"]
-[ext_resource type="PackedScene" uid="uid://cw4p6bc15gkbx" path="res://Scenes/pickup_item_type_0.tscn" id="5_l3k1m"]
-[ext_resource type="PackedScene" uid="uid://bgrvqcbv08e5a" path="res://Scenes/pickup_item_type_1.tscn" id="6_e6fc3"]
-[ext_resource type="PackedScene" uid="uid://wvxt37pj21h5" path="res://Scenes/pickup_item_type_2.tscn" id="7_yucsb"]
+[ext_resource type="PackedScene" uid="uid://cw4p6bc15gkbx" path="res://miniGame/Scenes/pickup_item_type_0.tscn" id="5_l3k1m"]
+[ext_resource type="PackedScene" uid="uid://bgrvqcbv08e5a" path="res://miniGame/Scenes/pickup_item_type_1.tscn" id="6_e6fc3"]
+[ext_resource type="PackedScene" uid="uid://wvxt37pj21h5" path="res://miniGame/Scenes/pickup_item_type_2.tscn" id="7_yucsb"]
 [ext_resource type="Script" path="res://Scripts/ItemSpawner.gd" id="8_bgew3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sriop"]
@@ -54,61 +54,66 @@ player = NodePath("../Player")
 [node name="GameplayTimer" type="Timer" parent="GameManager"]
 autostart = true
 
-[node name="Environments" type="Node3D" parent="."]
+[node name="invisible boundary" type="Node3D" parent="."]
+transform = Transform3D(2.58266, 0, 0, 0, 1.50522, 0, 0, 0, 2.59362, 0, -68.5422, -122.914)
 
-[node name="Ground" type="StaticBody3D" parent="Environments"]
+[node name="Ground" type="StaticBody3D" parent="invisible boundary"]
 
-[node name="GroundMesh" type="MeshInstance3D" parent="Environments/Ground"]
+[node name="GroundMesh" type="MeshInstance3D" parent="invisible boundary/Ground"]
 material_override = ExtResource("1_k2f2a")
 mesh = SubResource("BoxMesh_sriop")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="invisible boundary/Ground"]
 shape = SubResource("ConvexPolygonShape3D_37r2e")
 
-[node name="Wall" type="StaticBody3D" parent="Environments"]
+[node name="Wall" type="StaticBody3D" parent="invisible boundary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -50)
+visible = false
 
-[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall"]
+[node name="WallMesh" type="MeshInstance3D" parent="invisible boundary/Wall"]
 material_override = ExtResource("1_k2f2a")
 mesh = SubResource("BoxMesh_6owly")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="invisible boundary/Wall"]
 shape = SubResource("ConvexPolygonShape3D_8emen")
 
-[node name="Wall2" type="StaticBody3D" parent="Environments"]
+[node name="Wall2" type="StaticBody3D" parent="invisible boundary"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 50)
+visible = false
 
-[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall2"]
+[node name="WallMesh" type="MeshInstance3D" parent="invisible boundary/Wall2"]
 material_override = ExtResource("1_k2f2a")
 mesh = SubResource("BoxMesh_6owly")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="invisible boundary/Wall2"]
 shape = SubResource("ConvexPolygonShape3D_8emen")
 
-[node name="Wall3" type="StaticBody3D" parent="Environments"]
+[node name="Wall3" type="StaticBody3D" parent="invisible boundary"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 5, 0)
+visible = false
 
-[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall3"]
+[node name="WallMesh" type="MeshInstance3D" parent="invisible boundary/Wall3"]
 material_override = ExtResource("1_k2f2a")
 mesh = SubResource("BoxMesh_6owly")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="invisible boundary/Wall3"]
 shape = SubResource("ConvexPolygonShape3D_8emen")
 
-[node name="Wall4" type="StaticBody3D" parent="Environments"]
+[node name="Wall4" type="StaticBody3D" parent="invisible boundary"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 5, 0)
+visible = false
 
-[node name="WallMesh" type="MeshInstance3D" parent="Environments/Wall4"]
+[node name="WallMesh" type="MeshInstance3D" parent="invisible boundary/Wall4"]
 material_override = ExtResource("1_k2f2a")
 mesh = SubResource("BoxMesh_6owly")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environments/Wall4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="invisible boundary/Wall4"]
 shape = SubResource("ConvexPolygonShape3D_8emen")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environments"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="invisible boundary"]
 environment = SubResource("Environment_aqqi7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environments"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="invisible boundary"]
 transform = Transform3D(0.610175, -0.518708, 0.598857, 0, 0.755877, 0.654713, -0.792267, -0.399489, 0.461217, 3.55975, 6.85944, 2.33715)
 shadow_enabled = true
 

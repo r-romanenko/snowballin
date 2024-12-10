@@ -17,8 +17,8 @@ func _process(delta: float) -> void:
 
 	# Get the current scale of the ball's collision shape
 	var current_scale = collision_shape.scale.y
-	print("Current scale of collision shape:", current_scale)
+	#print("Current scale of collision shape:", current_scale)
 
 	# Scale the RayCast3D proportionally to the ball's size
 	self.scale = Vector3.ONE * current_scale * scale_intensity
-	print("RayCast3D scale updated to:", self.scale)
+	#print("RayCast3D scale updated to:", self.scale)

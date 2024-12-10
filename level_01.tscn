@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://co60ll2iitdm5"]
+[gd_scene load_steps=22 format=4 uid="uid://co60ll2iitdm5"]
 
 [ext_resource type="MeshLibrary" uid="uid://i2wxojilu4tw" path="res://blocks.meshlib" id="1_a5prr"]
 [ext_resource type="Script" path="res://death_zone.gd" id="1_cufvx"]
@@ -8,11 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://cec4sh33fsv6t" path="res://pause_menu.tscn" id="6_dwi58"]
 [ext_resource type="Texture2D" uid="uid://cdax08y452836" path="res://Pause Screen.png" id="7_a2bkk"]
 [ext_resource type="PackedScene" uid="uid://8k5uaxmmcqtx" path="res://mountain1.tscn" id="7_nt5oq"]
-[ext_resource type="AudioStream" uid="uid://ddrxbb8nt3p06" path="res://assets/sounds/Icy crunch loop.wav" id="8_b2ej5"]
 [ext_resource type="AudioStream" uid="uid://cyudocd8hfkxq" path="res://assets/sounds/Snow Slope Run.mp3" id="9_2njx7"]
+[ext_resource type="PackedScene" uid="uid://bmbgmx6hbddg3" path="res://miniGame/Scenes/GameScene.tscn" id="11_ulx03"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7yh47"]
-size = Vector3(150, 1, 150)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dewhu"]
+points = PackedVector3Array(-50, -0.5, -50, -50, 0.5, -50, 50, -0.5, -50, -50, -0.5, 50, -50, 0.5, 50, 50, 0.5, -50, 50, -0.5, 50, 50, 0.5, 50)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j0xl6"]
+points = PackedVector3Array(50, 5, 0.5, 50, 5, -0.5, -50, 5, 0.5, 50, -5, 0.5, 50, -5, -0.5, -50, 5, -0.5, -50, -5, 0.5, -50, -5, -0.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a06m0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -93,12 +96,27 @@ data = PackedVector3Array(-0.935, 0.8666, 1, -1, 1, 1, -0.935, 1, 1, -0.935, 0.8
 [node name="level01" type="Node3D"]
 
 [node name="DeathZone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -36.1404, 0)
+transform = Transform3D(2.583, 0, 0, 0, 1.505, 0, 0, 0, 2.594, 0, -68.542, -122.914)
 script = ExtResource("1_cufvx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -50, 0)
-shape = SubResource("BoxShape3D_7yh47")
+shape = SubResource("ConvexPolygonShape3D_dewhu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -50)
+shape = SubResource("ConvexPolygonShape3D_j0xl6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 50)
+shape = SubResource("ConvexPolygonShape3D_j0xl6")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 5, 0)
+shape = SubResource("ConvexPolygonShape3D_j0xl6")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 5, 0)
+shape = SubResource("ConvexPolygonShape3D_j0xl6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0919161, 0.451098, 0.887728, 0.861333, 0.483357, -0.156434, -0.499657, 0.750251, -0.432974, 0, 10, 0)
@@ -123,10 +141,6 @@ mass = 2.501
 script = ExtResource("3_8ajf4")
 jump_impulse = 10
 
-[node name="Rolling" type="AudioStreamPlayer" parent="GridMap/Ball"]
-stream = ExtResource("8_b2ej5")
-volume_db = -29.085
-
 [node name="Victory Zone" type="Area3D" parent="."]
 script = ExtResource("5_q6qtb")
 NEXT_LEVEL = "res://level_02.tscn"
@@ -149,7 +163,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level"]
 transform = Transform3D(13.5429, 0, 0, 0, 14.6802, 0, 0, 0, 34.3025, 0, -16.9392, -31.5864)
-visible = false
 shape = SubResource("ConcavePolygonShape3D_a6g0w")
 
 [node name="Mountain1" parent="level" instance=ExtResource("7_nt5oq")]
@@ -172,6 +185,8 @@ autoplay = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.893442, 0.449179, 0, -0.449179, 0.893442, 0, 0, 0)
+
+[node name="GameScene" parent="." instance=ExtResource("11_ulx03")]
 
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
 [connection signal="body_entered" from="GridMap/Ball" to="DeathZone" method="_on_ball_body_entered"]

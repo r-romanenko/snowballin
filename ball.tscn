@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://clniwrvskmnd2"]
+[gd_scene load_steps=15 format=3 uid="uid://clniwrvskmnd2"]
 
 [ext_resource type="Texture2D" uid="uid://cwryxhf1wme67" path="res://assets/textures/image(2).png" id="1_vbm1p"]
 [ext_resource type="ArrayMesh" uid="uid://6kk2qxx4iibv" path="res://assets/models/pixar-ball.obj" id="2_smidh"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_wdwwl"]
 [ext_resource type="Script" path="res://gpu_particles_3d.gd" id="4_no40b"]
 [ext_resource type="Script" path="res://floor_check.gd" id="4_x48tf"]
+[ext_resource type="AudioStream" uid="uid://ddrxbb8nt3p06" path="res://assets/sounds/Icy crunch loop.wav" id="6_7br4w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_poukv"]
 rough = true
@@ -88,3 +89,7 @@ snap = 1e-06
 radius = 1.0
 radial_segments = 20
 rings = 15
+
+[node name="Rolling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7br4w")
+volume_db = -29.085
