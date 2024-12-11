@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://co60ll2iitdm5"]
+[gd_scene load_steps=21 format=4 uid="uid://co60ll2iitdm5"]
 
 [ext_resource type="MeshLibrary" uid="uid://i2wxojilu4tw" path="res://blocks.meshlib" id="1_a5prr"]
 [ext_resource type="Script" path="res://death_zone.gd" id="1_cufvx"]
+[ext_resource type="Texture2D" uid="uid://2nsx7qorgb57" path="res://assets/textures/Skybox.png" id="2_htxsr"]
 [ext_resource type="Script" path="res://victory_zone.gd" id="5_q6qtb"]
 [ext_resource type="PackedScene" uid="uid://cec4sh33fsv6t" path="res://pause_menu.tscn" id="6_dwi58"]
 [ext_resource type="Texture2D" uid="uid://cdax08y452836" path="res://Pause Screen.png" id="7_a2bkk"]
@@ -15,16 +16,16 @@ points = PackedVector3Array(-50, -0.5, -50, -50, 0.5, -50, 50, -0.5, -50, -50, -
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j0xl6"]
 points = PackedVector3Array(50, 5, 0.5, 50, 5, -0.5, -50, 5, 0.5, 50, -5, 0.5, 50, -5, -0.5, -50, 5, -0.5, -50, -5, 0.5, -50, -5, -0.5)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a06m0"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_el1ms"]
+panorama = ExtResource("2_htxsr")
 
 [sub_resource type="Sky" id="Sky_4x0yd"]
-sky_material = SubResource("ProceduralSkyMaterial_a06m0")
+sky_material = SubResource("PanoramaSkyMaterial_el1ms")
 
 [sub_resource type="Environment" id="Environment_x6txn"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.517956, 0.674063, 1, 1)
+background_energy_multiplier = 0.75
 sky = SubResource("Sky_4x0yd")
 tonemap_mode = 3
 adjustment_enabled = true
@@ -138,11 +139,11 @@ script = ExtResource("5_q6qtb")
 NEXT_LEVEL = "res://level_02.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Victory Zone"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.449316, -19.1421, -66.6762)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.449316, -50.1207, -233.512)
 shape = SubResource("BoxShape3D_din3b")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Victory Zone/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.544158, -2.43799, -0.913631)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.544158, -4.50534, -0.913635)
 size = Vector3(26.0099, 23.8506, 2.82727)
 script = SubResource("GDScript_vfl6c")
 
