@@ -79,7 +79,7 @@ item_parent = NodePath("../Items")
 item_templates = Array[PackedScene]([ExtResource("5_l3k1m"), ExtResource("6_e6fc3"), ExtResource("7_yucsb")])
 
 [node name="ItemSpawnTimer" type="Timer" parent="ItemSpawner"]
-wait_time = 0.75
+wait_time = 0.125
 autostart = true
 
 [node name="invisible boundary" type="Node3D" parent="."]

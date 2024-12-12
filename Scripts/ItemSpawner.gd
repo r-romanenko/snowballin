@@ -8,9 +8,9 @@ func _spawn_pickup_item() -> void:
 	var item = item_templates.pick_random().instantiate()
 	item_parent.add_child(item)
 	
-	item.global_position.x = randf_range(-40.0, 40.0)
-	item.global_position.y = randf_range(2.0, 6.0)
-	item.global_position.z = randf_range(-40.0, 40.0)
+	item.global_position.x = randf_range(-150.0, 150.0)
+	item.global_position.y = randf_range(2.0, 20.0)
+	item.global_position.z = randf_range(-150.0, 150.0)
 	
 	item.rotation.x = randf_range(0, PI * 2.0)
 	item.rotation.y = randf_range(0, PI * 2.0)
