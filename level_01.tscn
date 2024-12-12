@@ -196,5 +196,7 @@ transform = Transform3D(-196.404, 0, -1011.26, 0, 2625.36, 0, 1011.26, 0, -196.4
 material_override = SubResource("StandardMaterial3D_kseo3")
 mesh = ExtResource("10_iygco")
 
+[node name="Node" type="Node" parent="."]
+
 [connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
 [connection signal="body_entered" from="Victory Zone" to="Victory Zone" method="_on_body_entered"]
