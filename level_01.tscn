@@ -36,7 +36,7 @@ adjustment_contrast = 1.5
 adjustment_saturation = 1.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_din3b"]
-size = Vector3(25.5405, 25.8353, 2)
+size = Vector3(25.5405, 25.8353, 3.4082)
 
 [sub_resource type="GDScript" id="GDScript_vfl6c"]
 script/source = "extends CSGBox3D
@@ -144,11 +144,11 @@ script = ExtResource("5_q6qtb")
 NEXT_LEVEL = "res://level_02.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Victory Zone"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.449316, -50.1207, -233.512)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.449316, -50.1207, -234.357)
 shape = SubResource("BoxShape3D_din3b")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Victory Zone/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.544158, -4.50534, -0.913635)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.544158, -5.96935, -0.913635)
 size = Vector3(26.0099, 23.8506, 2.82727)
 script = SubResource("GDScript_vfl6c")
 
