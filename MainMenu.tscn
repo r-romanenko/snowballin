@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca75txrptcfjp"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_8vucm"]
+[ext_resource type="Texture2D" uid="uid://dpj01e6a1djq3" path="res://assets/textures/winter wonderland 3.jpg" id="2_288qe"]
+[ext_resource type="Texture2D" uid="uid://dsiqbaigcnghd" path="res://assets/textures/Snowballin-12-11-2024.png" id="3_wwiyq"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8vucm")
+
+[node name="WinterWonderland3" type="Sprite2D" parent="."]
+position = Vector2(546, 317)
+texture = ExtResource("2_288qe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -197.665
+offset_right = 83.0
+offset_bottom = -84.665
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+text = "Start"
+
+[node name="ControlsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+text = "Quit"
+
+[node name="Snowballin-12-11-2024" type="Sprite2D" parent="."]
+position = Vector2(573, 217)
+texture = ExtResource("3_wwiyq")
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
