@@ -1,14 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq4fbhx643e74"]
+[gd_scene load_steps=6 format=3 uid="uid://dq4fbhx643e74"]
 
 [ext_resource type="PackedScene" uid="uid://co60ll2iitdm5" path="res://level_01.tscn" id="1_dnr6v"]
 [ext_resource type="AudioStream" uid="uid://r17jd1qsoo" path="res://assets/sounds/Super Mario 64 - Cool Cool Mountain Music.mp3" id="2_j2vlx"]
+[ext_resource type="Texture2D" uid="uid://bhmshsv27ah1w" path="res://assets/models/texture map.png" id="3_3t1bv"]
+[ext_resource type="ArrayMesh" uid="uid://b8wv1vcm8ck7m" path="res://assets/models/everest.obj" id="4_5cql1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kseo3"]
+albedo_texture = ExtResource("3_3t1bv")
 
 [node name="level02" instance=ExtResource("1_dnr6v")]
 
 [node name="GridMap" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.909, 0, 0)
 data = {
 "cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 0, 65534, 0, 65535, 65534, 0, 65535, 65533, 0, 65535, 65532, 0, 65535, 65531, 0, 65535, 65530, 0, 65535, 65529, 0, 65534, 65529, 0, 65534, 65528, 0, 65534, 65525, 5, 65533, 65529, 4, 65535, 65527, 4, 65535, 65528, 4, 2, 65534, 2, 2, 65535, 1, 2, 0, 1, 1, 65535, 1)
 }
 
+[node name="Mountain1" parent="level" index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.137817, -67.5666, 6.1382)
+
 [node name="Background music" parent="." index="7"]
 stream = ExtResource("2_j2vlx")
+
+[node name="Everest" parent="." index="10"]
+transform = Transform3D(671.277, 0, 0, 0, 1710.75, 0, 0, 0, 671.277, -1113.79, -635.337, -1369.83)
+
+[node name="Everest2" parent="." index="11"]
+transform = Transform3D(-196.404, 0, -1011.26, 0, 2625.36, 0, 1011.26, 0, -196.404, 838.773, -807.959, -1808.14)
+
+[node name="Everest3" type="MeshInstance3D" parent="." index="12"]
+transform = Transform3D(1527.87, 0, 0, 0, 3893.77, 0, 0, 0, 1527.87, -460.261, -1270.49, -2667.17)
+material_override = SubResource("StandardMaterial3D_kseo3")
+mesh = ExtResource("4_5cql1")
