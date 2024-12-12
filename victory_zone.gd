@@ -11,7 +11,12 @@ func _on_body_entered(body: RigidBody3D) -> void:
 		var ball_speed = body.linear_velocity.length()
 		
 		if ball_scale * ball_speed >= required_energy:
-			call_deferred("_change_scene")
+			# Check the path of the current scene
+			var current_scene_path = get_tree().root.get_child(0).filename
+			if current_scene_path == "res://level_02.tscn":
+				get_tree().change_scene_to_file("res://EndGame.tscn")
+			else:
+				call_deferred("_change_scene")
 		else:
 			call_deferred("_reset_level")
 

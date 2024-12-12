@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccpopfdwv60pl"]
+
+[ext_resource type="Texture2D" uid="uid://cajrt0vwhwtjn" path="res://assets/textures/happy snowman.jpg" id="1_3pef3"]
+[ext_resource type="Texture2D" uid="uid://hkl2a371y1ll" path="res://assets/textures/Good-job-12-11-2024.png" id="2_ws6k5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HappySnowman" type="Sprite2D" parent="."]
+position = Vector2(617, 280)
+scale = Vector2(0.225795, 0.225795)
+texture = ExtResource("1_3pef3")
+
+[node name="Good-job-12-11-2024" type="Sprite2D" parent="."]
+position = Vector2(361, 278)
+rotation = -0.261799
+scale = Vector2(0.713, 0.713)
+texture = ExtResource("2_ws6k5")

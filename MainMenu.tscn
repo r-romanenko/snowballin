@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca75txrptcfjp"]
+[gd_scene load_steps=5 format=3 uid="uid://ca75txrptcfjp"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8vucm"]
 [ext_resource type="Texture2D" uid="uid://dpj01e6a1djq3" path="res://assets/textures/winter wonderland 3.jpg" id="2_288qe"]
 [ext_resource type="Texture2D" uid="uid://dsiqbaigcnghd" path="res://assets/textures/Snowballin-12-11-2024.png" id="3_wwiyq"]
+[ext_resource type="AudioStream" uid="uid://2niegjjdjeq0" path="res://assets/sounds/Snowflake Lake - Mario Party 6 Soundtrack.mp3" id="4_o5yy8"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -48,6 +49,11 @@ text = "Quit"
 [node name="Snowballin-12-11-2024" type="Sprite2D" parent="."]
 position = Vector2(573, 217)
 texture = ExtResource("3_wwiyq")
+
+[node name="Background music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_o5yy8")
+volume_db = -28.204
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]

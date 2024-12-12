@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2niegjjdjeq0"
+path="res://.godot/imported/Snowflake Lake - Mario Party 6 Soundtrack.mp3-19f6a1cad0f7238b626f3faf08b5545f.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Snowflake Lake - Mario Party 6 Soundtrack.mp3"
+dest_files=["res://.godot/imported/Snowflake Lake - Mario Party 6 Soundtrack.mp3-19f6a1cad0f7238b626f3faf08b5545f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
