@@ -148,7 +148,6 @@ max_contacts_reported = 1
 script = ExtResource("2_i461g")
 camera_node = NodePath("../CameraPivot/Camera3D")
 move_force = 150.0
-rolling_force = 30
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
 visible = false
