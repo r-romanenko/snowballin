@@ -106,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -50)
 shape = SubResource("ConvexPolygonShape3D_j0xl6")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="DeathZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 50)
+transform = Transform3D(1.31303, 0, 0, 0, 18.2444, 0, 0, 0, 1, 0, 5, 50)
 shape = SubResource("ConvexPolygonShape3D_j0xl6")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="DeathZone"]

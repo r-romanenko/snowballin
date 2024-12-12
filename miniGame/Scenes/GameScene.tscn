@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bmbgmx6hbddg3"]
+[gd_scene load_steps=28 format=3 uid="uid://bmbgmx6hbddg3"]
 
 [ext_resource type="Material" uid="uid://ck16v7kivvfq6" path="res://miniGame/Materials/GrayGridMaterial.tres" id="1_k2f2a"]
 [ext_resource type="Material" uid="uid://pyue2l6n7crf" path="res://miniGame/Materials/OrangeMaterial.tres" id="2_d1jr8"]
@@ -32,6 +32,9 @@ sky_material = SubResource("ProceduralSkyMaterial_6kb5g")
 [sub_resource type="Environment" id="Environment_aqqi7"]
 background_mode = 2
 sky = SubResource("Sky_15oek")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_07h5m"]
+rough = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_reiq4"]
 radial_segments = 16
@@ -76,6 +79,7 @@ item_parent = NodePath("../Items")
 item_templates = Array[PackedScene]([ExtResource("5_l3k1m"), ExtResource("6_e6fc3"), ExtResource("7_yucsb")])
 
 [node name="ItemSpawnTimer" type="Timer" parent="ItemSpawner"]
+wait_time = 0.75
 autostart = true
 
 [node name="invisible boundary" type="Node3D" parent="."]
@@ -138,10 +142,13 @@ shape = SubResource("ConvexPolygonShape3D_8emen")
 environment = SubResource("Environment_aqqi7")
 
 [node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("camera_node")]
+physics_material_override = SubResource("PhysicsMaterial_07h5m")
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("2_i461g")
 camera_node = NodePath("../CameraPivot/Camera3D")
+move_force = 150.0
+rolling_force = 30
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
 visible = false
