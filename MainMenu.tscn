@@ -37,10 +37,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 text = "Start"
 
-[node name="ControlsButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Controls"
-
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
@@ -56,5 +52,4 @@ volume_db = -28.204
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
